@@ -1,0 +1,30 @@
+.container {
+  padding: 8px;
+
+  &__header {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    align-items: center;
+    height: 48px;
+  }
+
+  &__main {
+    min-height: calc(100vh - 128px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__footer {
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+  }
+}
+
+.header {
+
+  &__btn {}
+}

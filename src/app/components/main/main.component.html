@@ -1,0 +1,70 @@
+<div *ngIf="dataSource.data.length; else download">
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" #input>
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- Company Column -->
+      <ng-container matColumnDef="Company">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header='car'> Company </th>
+        <td mat-cell *matCellDef="let row"> {{row.car}} </td>
+      </ng-container>
+      <!-- Model Column -->
+      <ng-container matColumnDef="Model">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="car_model"> Model </th>
+        <td mat-cell *matCellDef="let row"> {{row.car_model}} </td>
+      </ng-container>
+      <!-- VIN Column -->
+      <ng-container matColumnDef="VIN">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="car_vin"> VIN </th>
+        <td mat-cell *matCellDef="let row"> {{row.car_vin}} </td>
+      </ng-container>
+      <!-- Color Column -->
+      <ng-container matColumnDef="Color">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="car_color"> Color </th>
+        <td mat-cell *matCellDef="let row"> {{row.car_color}} </td>
+      </ng-container>
+      <!-- Year Column -->
+      <ng-container matColumnDef="Year">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="car_model_year"> Year </th>
+        <td mat-cell *matCellDef="let row"> {{row.car_model_year}} </td>
+      </ng-container>
+      <!-- Price Column -->
+      <ng-container matColumnDef="Price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="price"> Price </th>
+        <td mat-cell *matCellDef="let row"> {{row.price}} </td>
+      </ng-container>
+      <!-- Availability Column -->
+      <ng-container matColumnDef="Availability">
+        <th mat-header-cell *matHeaderCellDef> Availability </th>
+        <td mat-cell *matCellDef="let row"><span class="availability">{{row.availability?'Yes':'No'}}</span></td>
+      </ng-container>
+      <!-- Action Column -->
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="edite(row.id)">Edit</button>
+            <button mat-menu-item (click)="delete(row.id,'200ms', '200ms')">Delete</button>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5]" aria-label="Select page of users"></mat-paginator>
+  </div>
+
+</div>
+
+<ng-template #download>
+  <span class="download">Please wait while data is being downloaded</span>
+</ng-template>

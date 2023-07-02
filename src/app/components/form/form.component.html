@@ -1,0 +1,73 @@
+<form class="form" (ngSubmit)="submit()" [formGroup]="form">
+  <p class="form__title"> {{car ? 'Edit car' : 'Add car'}}</p>
+
+  <div class="form__lable-input-box">
+    <label class="form__lable" for="company">Company</label>
+    <input class="form__input" type="text" id="company" formControlName="car" [readonly]="car ? true : false">
+    <div class="form__error" *ngIf='form.controls.car.invalid && form.controls.car.touched'>
+      <p class="form__error_text" *ngIf="form.controls['car'].errors?.['maxlength']">Data is too long</p>
+      <p class="form__error_text" *ngIf="form.controls['car'].errors?.['required']">Field can`t be empty</p>
+    </div>
+  </div>
+
+  <div class="form__lable-input-box">
+    <label class="form__lable" for="model">Model</label>
+    <input class="form__input" type="text" id="model" formControlName="car_model" [readonly]="car ? true : false">
+    <div class="form__error" *ngIf='form.controls.car_model.invalid && form.controls.car_model.touched'>
+      <p class="form__error_text" *ngIf="form.controls['car_model'].errors?.['maxlength']">Data is too long</p>
+      <p class="form__error_text" *ngIf="form.controls['car_model'].errors?.['required']">Field can`t be empty</p>
+    </div>
+  </div>
+
+  <div class="form__lable-input-box">
+    <label class="form__lable" for="vin">VIN</label>
+    <input class="form__input" type="text" id="vin" formControlName="car_vin" [readonly]="car ? true : false">
+    <div class="form__error" *ngIf='form.controls.car_vin.invalid && form.controls.car_vin.touched'>
+      <p class="form__error_text" *ngIf="form.controls['car_vin'].errors?.['minlength']">Data is too short</p>
+      <p class="form__error_text" *ngIf="form.controls['car_vin'].errors?.['maxlength']">Data is too long</p>
+      <p class="form__error_text" *ngIf="form.controls['car_vin'].errors?.['required']">Field can`t be empty</p>
+    </div>
+  </div>
+
+  <div class="form__lable-input-box">
+    <label class="form__lable" for="color">Color</label>
+    <input class="form__input" type="text" id="color" formControlName="car_color">
+    <div class="form__error" *ngIf='form.controls.car_color.invalid && form.controls.car_color.touched'>
+      <p class="form__error_text" *ngIf="form.controls['car_color'].errors?.['required']">Field can`t be empty</p>
+    </div>
+  </div>
+
+  <div class="form__lable-input-box">
+    <label class="form__lable" for="year">Year</label>
+    <input class="form__input" type="number" id="year" formControlName="car_model_year" [readonly]="car ? true : false">
+    <div class="form__error" *ngIf='form.controls.car_model_year.invalid && form.controls.car_model_year.touched'>
+      <p class="form__error_text" *ngIf="form.controls['car_model_year'].errors?.['pattern']">Data must contain 4 numbers</p>
+    </div>
+  </div>
+
+  <div class="form__lable-input-box">
+    <label class="form__lable" for="price">Price</label>
+    <input class="form__input" type="text" id="price" formControlName="price">
+    <div class="form__error" *ngIf='form.controls.price.invalid && form.controls.price.touched'>
+      <p class="form__error_text" *ngIf="form.controls['price'].errors?.['pattern']">Field can`t be empty</p>
+    </div>
+  </div>
+
+
+  <div class="form__lable-input-box">
+    <label class="form__lable">Availability</label>
+    <div>
+      <mat-radio-group class="form__availability" formControlName="availability" aria-label="Select an option">
+        <mat-radio-button class="form__input_radio" name="availability" [value]="true" color="primary">
+          Yes
+        </mat-radio-button>
+        <mat-radio-button class="form__input_radio"  name="availability" [value]="false" color="primary">
+          No
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+
+  <button class="form__submit" mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Save</button>
+</form>
+
