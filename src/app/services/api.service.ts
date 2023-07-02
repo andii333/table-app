@@ -13,7 +13,7 @@ export class ApiService {
   constructor(
     private http: HttpClient,
     private localStorageService: LocalStorageService
-  ) { }
+  ) {}
 
   getCars(): Observable<Car[]> {
     return this.http.get<ApiData>('https://myfakeapi.com/api/cars/').pipe(

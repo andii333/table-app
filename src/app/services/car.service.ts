@@ -16,10 +16,12 @@ export class CarService {
   ) { this.setCars() }
 
   setCars() {
-    if (this.localStorageService.getCarsLocalStorage()?.length) {
+    if (this.localStorageService.getCarsLocalStorage().length) {
       this._cars.next(this.localStorageService.getCarsLocalStorage())
     } else {
-      this.apiService.getCars().subscribe((cars) => this._cars.next(cars))
+      this.apiService.getCars().subscribe((cars) =>{
+        this._cars.next(cars)
+      } )
     }
   }
 

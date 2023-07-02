@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,6 +7,7 @@ import { DeleteComponent } from '../delete/delete.component';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { EditComponent } from '../edit/edit.component';
 import { CarService } from 'src/app/services/car.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main',
@@ -15,28 +16,34 @@ import { CarService } from 'src/app/services/car.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   cars = this.localStorageService.getCarsLocalStorage();
-  dataSource = new MatTableDataSource(this.cars);
+  dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['Company', 'Model', 'VIN', 'Color', 'Year', 'Price', 'Availability', 'Action'];
-
+  subscription!: Subscription
   constructor(
     public dialog: MatDialog,
     private localStorageService: LocalStorageService,
-    private carService: CarService
+    private carService: CarService,
+    private cd:ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
-    this.carService._cars.subscribe((cars) => {
+    this.subscription = this.carService._cars.subscribe((cars) => {
       this.dataSource.data = cars;
       this.cars = cars;
+      this.cd.detectChanges()
       setTimeout(() => {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       })
     })
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   edite(id: number, enterAnimationDuration?: string, exitAnimationDuration?: string): void {
