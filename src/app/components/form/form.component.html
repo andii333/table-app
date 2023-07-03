@@ -49,7 +49,7 @@
     <label class="form__lable" for="price">Price</label>
     <input class="form__input" type="text" id="price" formControlName="price">
     <div class="form__error" *ngIf='form.controls.price.invalid && form.controls.price.touched'>
-      <p class="form__error_text" *ngIf="form.controls['price'].errors?.['pattern']">Field can`t be empty</p>
+      <p class="form__error_text" *ngIf="form.controls['price'].errors?.['required']">Field can`t be empty</p>
     </div>
   </div>
 

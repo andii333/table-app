@@ -49,6 +49,7 @@ export class MainComponent implements OnInit, OnDestroy{
   edite(id: number, enterAnimationDuration?: string, exitAnimationDuration?: string): void {
     this.localStorageService.idToLocalStorage(id);
     this.dialog.open(EditComponent, {
+      height:'100vh',
       enterAnimationDuration,
       exitAnimationDuration,
     });
