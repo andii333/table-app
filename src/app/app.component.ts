@@ -14,7 +14,7 @@ export class AppComponent {
   constructor( public dialog: MatDialog ) { }
   addCar(enterAnimationDuration?: string, exitAnimationDuration?: string): void {
     this.dialog.open(AddComponent, {
-      height: '100vh',
+      height: '610px',
       enterAnimationDuration,
       exitAnimationDuration,
     });
