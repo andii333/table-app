@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteComponent } from '../delete/delete.component';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { EditComponent } from '../edit/edit.component';
+import { EditAddComponent } from '../edit/edit-add.component';
 import { CarService } from 'src/app/services/car.service';
 import { Subscription } from 'rxjs';
 
@@ -47,8 +47,8 @@ export class MainComponent implements OnInit, OnDestroy{
   }
 
   edite(id: number, enterAnimationDuration?: string, exitAnimationDuration?: string): void {
-    this.localStorageService.idToLocalStorage(id);
-    this.dialog.open(EditComponent, {
+    this.dialog.open(EditAddComponent, {
+      data:{'id':id},
       height:'610px',
       enterAnimationDuration,
       exitAnimationDuration,

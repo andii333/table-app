@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AddComponent } from './components/add/add.component';
+import { EditAddComponent } from './components/edit/edit-add.component';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,7 @@ export class AppComponent {
 
   constructor( public dialog: MatDialog ) { }
   addCar(enterAnimationDuration?: string, exitAnimationDuration?: string): void {
-    this.dialog.open(AddComponent, {
+    this.dialog.open(EditAddComponent, {
       height: '610px',
       enterAnimationDuration,
       exitAnimationDuration,

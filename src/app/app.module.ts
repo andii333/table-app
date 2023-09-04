@@ -4,8 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './components/main/main.component';
-import { EditComponent } from './components/edit/edit.component';
-import { AddComponent } from './components/add/add.component';
+import { EditAddComponent } from './components/edit/edit-add.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
@@ -38,8 +37,7 @@ const material = [
   declarations: [
     AppComponent,
     MainComponent,
-    EditComponent,
-    AddComponent,
+    EditAddComponent,
     DeleteComponent,
     FormComponent,
   ],
